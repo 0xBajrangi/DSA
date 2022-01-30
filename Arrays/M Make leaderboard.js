@@ -24,7 +24,7 @@ function runProgram(input) {
             if (int[j][1] < int[j+1][1]) {
 
                let temp = int[j];
-        int[j] = int[j+1];
+              int[j] = int[j + 1];
         int[j+1] = temp;
 
             }
