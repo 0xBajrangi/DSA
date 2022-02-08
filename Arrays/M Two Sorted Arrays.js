@@ -1,5 +1,5 @@
 function twoSortedArrays(n, arr1, arr2) {
-    
+    console.log(n,arr1)
     let i = 0;
     let j = n - 1;
     let ans = [];
