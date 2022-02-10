@@ -1,6 +1,6 @@
 
 function runProgram(input) {
-     //format the input and call the function to execute
+     //format the input and call the function to execut
     let [test, ...int] = input.trim().split("\n");
     test = +test;
     int = int.map(el => el.split(" ")).map(el => [el[0], Number(el[1])]);
@@ -8,7 +8,7 @@ function runProgram(input) {
      for (let i = 0; i < int.length; i++){
         let max = i;
         for (let j = i; j < int.length; j++){
-            if (int[j][0] < int[max][0]) {
+          if (int[j][0] < int[max][0]) {
                 max = j;
             }
         }
