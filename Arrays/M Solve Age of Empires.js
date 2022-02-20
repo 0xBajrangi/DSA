@@ -15,9 +15,6 @@ function runProgram(input) {
         i+=2;
     }
     console.log(ans)
-
-
-
 }
 if (process.env.USERNAME === "Acer") {
 
