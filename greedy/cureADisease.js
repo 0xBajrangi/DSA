@@ -1,37 +1,32 @@
-function findFamousSum(n) {
-    if (n < 10) return n;
-
-    let newSum = 0;
-    while (n > 0) {
-        let reminder = n % 10;
-        newSum += reminder;
-        n = Math.floor(n / 10);
-        
-    }
-    return findFamousSum(newSum);
-}
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, k] = input.split(" ");
-   
-   
-    let newSum = 0;
-    while (n > 0) {
-        let reminder = n % 10;
-        newSum += reminder;
-        n = Math.floor(n / 10);
-
+    
+    let [n, strength, count] = input.trim().split("\n");
+    
+    strength = strength.split(" ").map(Number).sort((a, b) => a - b);
+    count = count.split(" ").map(Number).sort((a, b) => a - b);
+    let flag = true;
+    let i = 0;
+    while (i < n) {
+        if (strength[i] < count[i]) {
+            flag = false;
+            break;
+        }
+        i++
+            
     }
-
-
-    let ans = findFamousSum(newSum*k);
-    console.log(ans)
-  
+    if (flag) {
+        console.log("Yes");
+    } else {
+        console.log("No");
+    }
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`3546630947312051453014172159647935984478824945973141333062252613718025688716704470547449723886626736 100000`);
+    runProgram(`5
+123 146 454 542 456
+100 328 248 689 200`);
   
   
   } else {

@@ -1,37 +1,32 @@
-function findFamousSum(n) {
+
+const superDigit = (n) => {
     if (n < 10) return n;
-
-    let newSum = 0;
-    while (n > 0) {
-        let reminder = n % 10;
-        newSum += reminder;
-        n = Math.floor(n / 10);
-        
+    let digitSum = 0;
+    for (let i = 0; i < n.length; i++){
+        digitSum += Number(n[i]);
     }
-    return findFamousSum(newSum);
+    
+    return superDigit(digitSum.toString());
 }
-
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, k] = input.split(" ");
-   
-   
-    let newSum = 0;
-    while (n > 0) {
-        let reminder = n % 10;
-        newSum += reminder;
-        n = Math.floor(n / 10);
-
+ let [n,...arr] = input.trim().split("\n")
+    n = +n;
+    let line = -1;
+    while (n--) {
+        let N = arr[++line];
+        
+        console.log(superDigit(N))
     }
 
-
-    let ans = findFamousSum(newSum*k);
-    console.log(ans)
   
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`3546630947312051453014172159647935984478824945973141333062252613718025688716704470547449723886626736 100000`);
+    runProgram(`3
+45
+8
+186`);
   
   
   } else {
