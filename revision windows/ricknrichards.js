@@ -1,28 +1,35 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
-    n = +n;
-    arr = arr.trim().split(" ").map(Number);
-    
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
-        }
-      }
+    let [test, ...int] = input.trim().split("\n");
+    test = +test;
+  let line = -1;
+  while (test--) {
+    let n = +int[++line];
+    let arr = int[++line].trim().split(" ").map(Number);
+     bananaGame(n, arr);
   }
-  LIS(n,arr)
-  console.log(dp[n-1])
+  
+}
+function bananaGame(n, arr) {
+  let x = 0;
+  let y = arr.length - 1;
+  let richard = Math.min(...arr);
+  let rick = 2 * richard;
+  while (y > x) {
+    arr[x] -= rick;
+    arr[y] -= richard;
+    if (arr[x] <= 0) x++;
+    if (arr[y] <= 0) y--;
+  }
+  console.log(x+1,y)
   
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`1
+5
+2 9 8 2 7`);
   
   
   } else {

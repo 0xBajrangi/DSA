@@ -1,28 +1,30 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
-    n = +n;
-    arr = arr.trim().split(" ").map(Number);
-    
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
+    let exp = input.trim();
+    let ans = "";
+    let stack = [];
+    // ascii a - z 97 - 122
+    for (let i = 0; i < exp.length; i++){
+        if (stack.length == 0) {
+            stack.push(exp[i]);
+        } else if(exp[i]!=')' || exp[i]!="(") {
+                if (exp[i].charCodeAt(0) >= 97 && exp[i].charCodeAt(1) >= 122) {
+                    stack.push(exp[i]);
+                } else {
+                    while(stack.length !=0){
+                         
+                    }
+                }
+            }
         }
-      }
-  }
-  LIS(n,arr)
-  console.log(dp[n-1])
+    }
+ 
   
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`a+b-c+d*(e-f)/g+(h*(i/j))`);
   
   
   } else {

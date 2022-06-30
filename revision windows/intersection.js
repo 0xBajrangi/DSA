@@ -1,28 +1,32 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
+    let [n, arr1, arr2] = input.trim().split("\n");
     n = +n;
-    arr = arr.trim().split(" ").map(Number);
-    
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
-        }
-      }
-  }
-  LIS(n,arr)
-  console.log(dp[n-1])
+    arr1 = arr1.trim().split(" ").map(Number).sort((a, b) => a - b);
+    arr2 = arr2.trim().split(" ").map(Number).sort((a, b) => a - b);
+
+    console.log(common(n,arr1,arr2));
+ 
   
+  }
+function common(n, arr1, arr2) {
+    let i = 0, j = 0;
+    while (i < n && j < n) {
+        if (arr1[i] > arr2[j]) {
+            j++;
+        } else if (arr1[i] < arr2[j]) {
+            i++;
+        } else {
+            return arr1[i]
+        }
+    }
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`3
+4 5 7
+9 2 5`);
   
   
   } else {

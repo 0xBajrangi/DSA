@@ -1,28 +1,25 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
-    n = +n;
-    arr = arr.trim().split(" ").map(Number);
-    
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
+    let int = input.trim().split("\n").map(Number);
+    let dp = new Array(int.length).fill(null)
+    for (let i = 0; i < int.length; i++){
+        console.log(monetary(int[i]));
+    }
+    function monetary(n) {
+        if (n == 0) {
+            return 0;
         }
-      }
-  }
-  LIS(n,arr)
-  console.log(dp[n-1])
-  
-  }
+        if (dp[n]) return dp[n]
+        dp[n] = Math.max(n, monetary(Math.floor(n / 2)) + monetary(Math.floor(n / 3)) + monetary(Math.floor(n / 4)))
+        return dp[n]
+    }
+}
+
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`12
+2`);
   
   
   } else {

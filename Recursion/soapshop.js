@@ -1,28 +1,43 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
+    let [n, arr, m, ...query] = input.trim().split("\n");
     n = +n;
     arr = arr.trim().split(" ").map(Number);
-    
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
-        }
-      }
-  }
-  LIS(n,arr)
-  console.log(dp[n-1])
+    arr = arr.sort((a, b) => a - b);
+    m = +m;
+    let q;
+    for (let i = 0; i < m; i++){
+        q = +query[i];
+        soaps(n, arr, q);
+    }
+ 
   
-  }
+}
+  
+function soaps(n, arr, q) {
+    let high = n;
+    let low = 0;
+    // console.log(arr,q);
+    while (high > low) {
+        let mid = low + Math.floor((high - low) / 2);
+        if (arr[mid] >= q) {
+            high = mid;
+        } else {
+            low = mid +1;
+        }
+    }
+    console.log(low);
+}
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`5
+1 4 10 5 6
+4
+2
+3
+5
+11`);
   
   
   } else {

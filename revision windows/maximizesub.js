@@ -1,28 +1,33 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
+    let [n, str] = input.trim().split("\n");
     n = +n;
-    arr = arr.trim().split(" ").map(Number);
-    
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
+    let max = 0;
+    currmax = ""
+    for (let i = 0; i < n; i++){
+        let j = i+1;
+        let sub = "" + str[i];
+        while (j < n) {
+            if (str[j].charCodeAt(0) <=str[i].charCodeAt(0)) {
+                sub += str[j];
+                j++;
+            } else {
+                break;
+                }
         }
-      }
-  }
-  LIS(n,arr)
-  console.log(dp[n-1])
+        if (max < sub.length) {
+            max = sub.length;
+            currmax = sub;
+        }
+    }
+ console.log(currmax)
   
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`6
+ababaa`);
   
   
   } else {

@@ -1,28 +1,30 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
-    n = +n;
-    arr = arr.trim().split(" ").map(Number);
+   
+    const [str1, str2] = input.trim().split('\n');
     
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
+    let dp = {}; 
+    function similar(str1, str2, i, j) {
+        if (i >= str1.length || j >= str2.length) {
+            return 0;
         }
-      }
-  }
-  LIS(n,arr)
-  console.log(dp[n-1])
+
+        if (dp[[i, j]]) return dp[[i, j]];
+        if (str1[i] == str2[j]) {
+            dp[[i, j]] = 1 + similar(str1, str2, i + 1, j + 1);
+        } else {
+            dp[[i,j]] = Math.max(similar(str1,str2,i,j+1),similar(str1,str2,i+1,j))
+        }
+        return dp[[i, j]];
+    }
+    console.log(similar(str1, str2, 0, 0));
   
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`AEDFHR
+ABCDGH`);
   
   
   } else {

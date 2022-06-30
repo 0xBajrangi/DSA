@@ -1,28 +1,33 @@
 
 function runProgram(input) {
      //format the input and call the function to execute
-    let [n, arr] = input.trim().split('\n');
+    let [n, arr] = input.trim().split("\n");
     n = +n;
     arr = arr.trim().split(" ").map(Number);
-    
-  let dp = new Array(n).fill(1);
-    function LIS(n,arr) {
-      for (let i = 0; i < n; i++){
-        for (let j = i; j < n; j++){
-          if (arr[i] < arr[j]) {
-            dp[j] = Math.max(dp[j], dp[i] + 1);
-          }
+
+    let sum = 0;
+    for (let i = 0; i < n; i++){
+        for (let j = i + 1; j < n; j++){
+            // console.log(i,j,prime(j-i))
+            if (prime(j - i)) {
+                sum += Math.abs(arr[j]-arr[i]);
+            }
         }
-      }
-  }
-  LIS(n,arr)
-  console.log(dp[n-1])
-  
+    }
+  console.log(sum)
+}
+function prime(n) {
+    let count = 0;
+    for (let i = 1; i <= n; i++){
+        if (n % i == 0) count++;
+    }
+    if (count === 2) return true;
+    return false;
   }
 if (process.env.USERNAME === "Acer") {
   
-    runProgram(`9
-10 22 9 33 21 50 41 60 80`);
+    runProgram(`6
+1 2 3 5 7 12`);
   
   
   } else {
