@@ -12,13 +12,14 @@ function sudoku(int, zeros, curr) {
 
     for (let i = 1; i < 10; i++) {
         let [row, col] = zeros[curr];
-        int[row][col] = i;
         // console.log(validity(int,row,col,i))
         if (validity(int, row, col, i)) {
+            int[row][col] = i;
+
             sudoku(int, zeros, curr + 1);
+            int[row][col] = 0;
 
         }
-        int[row][col] = 0;
 
     }
 
