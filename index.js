@@ -1,23 +1,47 @@
-function runProgram(input) {
-    //format the input and call the function to execute
- }
-if (process.env.LOGNAME === "pawanlode") {
- runProgram(``);
- } else {
-   process.stdin.resume();
-   process.stdin.setEncoding("ascii");
-   let read = "";
-   process.stdin.on("data", function (input) {
-     read += input;
-   });
-   process.stdin.on("end", function () {
-     read = read.replace(/\n$/, "");
-     read = read.replace(/\n$/, "");
-     runProgram(read);
-   });
-   process.on("SIGINT", function () {
-     read = read.replace(/\n$/, "");
-     runProgram(read);
-     process.exit(0) ;
-   });
- }
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+var exist = function (board, word) {
+  let visited = {};
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[0].length; j++) {
+      if (board[i][j] == word[0]) {
+        let ans = find(board, i, j, word, 0, visited);
+        console.log(visited);
+        visited = {};
+        if (ans) return true;
+      }
+    }
+  }
+  return false;
+};
+
+function find(board, i, j, word, curr, visited) {
+  if (curr == word.length) {
+    return true;
+  }
+  if (
+    i < 0 ||
+    i >= board.length ||
+    j < 0 ||
+    j >= board[0].length ||
+    visited[[i, j]]
+  ) {
+    return false;
+  }
+
+  if (board[i][j] === word[curr] && !visited[[i, j]]) {
+    visited[[i, j]] = true;
+    let res =
+      find(board, i, j + 1, word, curr + 1, visited) ||
+      find(board, i, j - 1, word, curr + 1, visited) ||
+      find(board, i + 1, j, word, curr + 1, visited) ||
+      find(board, i - 1, j, word, curr + 1, visited);
+    delete visited[[i, j]];
+    return res;
+  } else {
+    return false;
+  }
+}

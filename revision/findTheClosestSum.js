@@ -13,24 +13,27 @@ function runProgram(input) {
 
  function nearest(n,trg,arr){
      let ans = [];
-
+let closets = Infinity
      for(let i = 0;i<n;i++){
          for(let j = i+1;j<n;j++){
              for(let  k= j+1;k<n;k++){
-                 ans.push(arr[i]+arr[j]+arr[k])
+                 let sum = arr[i]+arr[j]+arr[k]
+                 if(Math.abs(trg - closets) >= Math.abs(trg - sum)){
+            closets = sum;
+        }  
              }
          }
      }
-    //  console.log(ans);
+    //  console.log(ans,trg);
      // for   -x target y which will be closests
-     let closets = ans[0];
-     for(let i = 0;i<ans.length;i++){
-        //  console.log(closets , trg , ans[i]);
-        if(Math.abs(trg - closets) > Math.abs(trg - ans[i])){
-            closets = ans[i];
-        }
+    //  let closets = ans[0];
+    //  for(let i = 0;i<ans.length;i++){
+    //     //  console.log(closets , trg , ans[i]);
+    //     if(Math.abs(trg - closets) >= Math.abs(trg - ans[i])){
+    //         closets = ans[i];
+    //     }
          
-     }
+    //  }
      console.log(closets||0)
  }
 if (process.env.LOGNAME === "pawanlode") {
