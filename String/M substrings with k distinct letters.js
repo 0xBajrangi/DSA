@@ -21,6 +21,7 @@ function distinctSub(n, k, str) {
             j = i;
         }
 
+        //this is a comment 
         if (tempcount == k) {
             count++;
          obj = {};
