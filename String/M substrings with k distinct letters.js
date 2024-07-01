@@ -1,73 +1,73 @@
 function distinctSub(n, k, str) {
-    let count = 0;
-    let i = 0;
-    let j = i;
-    let tempcount = 0;
-    let obj = {};
-    while (i <= n - k) {
+  let count = 0;
+  let i = 0;
+  let j = i;
+  let tempcount = 0;
+  let obj = {};
+  while (i <= n - k) {
 
-        if (Object.keys(obj).length == 0) {
-            obj[str[j]] = 1;
-            j++;
-            tempcount++;
-        } else if (obj[str[j]] === undefined) {
-            obj[str[j]] = 1;
-            j++;
-            tempcount++;
-        } else {
-            obj = {};
-            tempcount = 0;
-            i++;
-            j = i;
-        }
-
-        //this is a comment 
-        if (tempcount == k) {
-            count++;
-         obj = {};
-            tempcount = 0;
-            i++;
-            j = i;
-        }
+    if (Object.keys(obj).length == 0) {
+      obj[str[j]] = 1;
+      j++;
+      tempcount++;
+    } else if (obj[str[j]] === undefined) {
+      obj[str[j]] = 1;
+      j++;
+      tempcount++;
+    } else {
+      obj = {};
+      tempcount = 0;
+      i++;
+      j = i;
     }
-    console.log(count)
+
+    //this is a comment 
+    if (tempcount == k) {
+      count++;
+      obj = {};
+      tempcount = 0;
+      i++;
+      j = i;
+    }
+  }
+  console.log(count)
 
 }
 
 function runProgram(input) {
-     //format the input and call the function to execute
-    let [nk, str] = input.trim().split("\n");
-    let [n, k] = nk.split(" ").map(Number);
-    distinctSub(n, k, str);
+  //format the input and call the function to execute
+  let [nk, str] = input.trim().split("\n");
+  let [n, k] = nk.split(" ").map(Number);
+  distinctSub(n, k, str);
 
-     
-  
-  }
+
+
+}
 if (process.env.USERNAME === "Acer") {
-  
+
   runProgram(`4 2
 abcc`);
-  
-  
-  } else {
-    process.stdin.resume();
-    process.stdin.setEncoding("ascii");
-    let read = "";
-    process.stdin.on("data", function (input) {
-      read += input;
-    });
-    process.stdin.on("end", function () {
-      read = read.replace(/\n$/, "");
-      read = read.replace(/\n$/, "");
-      runProgram(read);
-    });
-    process.on("SIGINT", function () {
-      read = read.replace(/\n$/, "");
-      runProgram(read);
-      process.exit(0) ;
-    });
+
+
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
 }
-  
+
 /*
 
 ubstrings with K distinct letters Ended
